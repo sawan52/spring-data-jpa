@@ -11,11 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "clinicaldata")
-@JsonIgnoreProperties({ "patient" })
 public class ClinicalData {
 
 	@Id
@@ -27,7 +26,16 @@ public class ClinicalData {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "patient_id", nullable = false)
+	@JsonIgnore
 	private Patient patient;
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
 	public int getId() {
 		return id;
