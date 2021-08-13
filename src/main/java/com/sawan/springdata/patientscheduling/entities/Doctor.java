@@ -21,25 +21,9 @@ public class Doctor {
 
 	@ManyToMany(mappedBy = "doctors")
 	private List<Patient> patients;
-	
+
 	@OneToMany
 	private List<Appointment> appointments;
-
-	public List<Appointment> getAppointments() {
-		return appointments;
-	}
-
-	public void setAppointments(List<Appointment> appointments) {
-		this.appointments = appointments;
-	}
-
-	public List<Patient> getPatients() {
-		return patients;
-	}
-
-	public void setPatients(List<Patient> patients) {
-		this.patients = patients;
-	}
 
 	public Long getId() {
 		return id;
@@ -71,6 +55,22 @@ public class Doctor {
 
 	public void setSpeciality(String speciality) {
 		this.speciality = speciality;
+	}
+
+	public List<Patient> getPatients() {
+		return patients;
+	}
+
+	public void setPatients(List<Patient> patients) {
+		this.patients = patients;
+	}
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 
 	@Override
