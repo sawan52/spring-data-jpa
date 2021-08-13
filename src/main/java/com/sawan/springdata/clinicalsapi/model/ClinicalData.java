@@ -4,18 +4,26 @@ import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@Table(name = "clinicaldata")
+@JsonIgnoreProperties({ "patient" })
 public class ClinicalData {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String componentValue;
 	private String componentName;
-	private Timestamp meauredDateTime;
+	private Timestamp measuredDateTime;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "patient_id", nullable = false)
@@ -45,20 +53,12 @@ public class ClinicalData {
 		this.componentName = componentName;
 	}
 
-	public Timestamp getMeauredDateTime() {
-		return meauredDateTime;
+	public Timestamp getMeasuredDateTime() {
+		return measuredDateTime;
 	}
 
-	public void setMeauredDateTime(Timestamp meauredDateTime) {
-		this.meauredDateTime = meauredDateTime;
-	}
-
-	public Patient getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Patient patient) {
-		this.patient = patient;
+	public void setMeasuredDateTime(Timestamp measuredDateTime) {
+		this.measuredDateTime = measuredDateTime;
 	}
 
 }
